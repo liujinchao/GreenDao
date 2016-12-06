@@ -29,6 +29,7 @@ public class LTestDao extends AbstractDao<LTest, Long> {
         public final static Property Remark = new Property(2, String.class, "remark", false, "REMARK");
         public final static Property Remark2 = new Property(3, String.class, "remark2", false, "REMARK2");
         public final static Property Remark3 = new Property(4, String.class, "remark3", false, "REMARK3");
+        public final static Property Remark4 = new Property(5, String.class, "remark4", false, "REMARK4");
     }
 
 
@@ -48,7 +49,8 @@ public class LTestDao extends AbstractDao<LTest, Long> {
                 "\"NAME\" TEXT," + // 1: name
                 "\"REMARK\" TEXT," + // 2: remark
                 "\"REMARK2\" TEXT," + // 3: remark2
-                "\"REMARK3\" TEXT);"); // 4: remark3
+                "\"REMARK3\" TEXT," + // 4: remark3
+                "\"REMARK4\" TEXT);"); // 5: remark4
     }
 
     /** Drops the underlying database table. */
@@ -85,6 +87,11 @@ public class LTestDao extends AbstractDao<LTest, Long> {
         if (remark3 != null) {
             stmt.bindString(5, remark3);
         }
+ 
+        String remark4 = entity.getRemark4();
+        if (remark4 != null) {
+            stmt.bindString(6, remark4);
+        }
     }
 
     @Override
@@ -115,6 +122,11 @@ public class LTestDao extends AbstractDao<LTest, Long> {
         if (remark3 != null) {
             stmt.bindString(5, remark3);
         }
+ 
+        String remark4 = entity.getRemark4();
+        if (remark4 != null) {
+            stmt.bindString(6, remark4);
+        }
     }
 
     @Override
@@ -129,7 +141,8 @@ public class LTestDao extends AbstractDao<LTest, Long> {
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // remark
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // remark2
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // remark3
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // remark3
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // remark4
         );
         return entity;
     }
@@ -141,6 +154,7 @@ public class LTestDao extends AbstractDao<LTest, Long> {
         entity.setRemark(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setRemark2(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setRemark3(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setRemark4(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
     
     @Override

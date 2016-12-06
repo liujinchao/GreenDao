@@ -2,6 +2,9 @@ package com.liujc.greendao.DataMigrate;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import com.liujc.greendao.dao.LTestDao;
+import com.liujc.greendao.dao.UserDao;
+
 /**
  * 类名称：V1Migration
  * 创建者：Create by liujc
@@ -13,6 +16,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class V1Migration implements Migration{
     @Override
     public void migrate(SQLiteDatabase db) {
-        db.execSQL("ALTER TABLE USER ADD COLUMN remark");
+        db.execSQL("ALTER TABLE USER ADD COLUMN remark");//简单SQL语句实现数据库更新
+//        MigrationHelper.migrate(db,UserDao.class);//如果不想写SQL语句也可以此方式对数据库进行更新
     }
 }

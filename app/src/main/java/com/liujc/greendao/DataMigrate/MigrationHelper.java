@@ -27,7 +27,7 @@ import java.util.List;
  * 修改人：Modify by liujc
  */
 public final class MigrationHelper {
-    public static boolean DEBUG = false;
+    public static boolean DEBUG = true;
     private static String TAG = "MigrationHelper";
     private static final String SQLITE_MASTER = "sqlite_master";
     private static final String SQLITE_TEMP_MASTER = "sqlite_temp_master";
@@ -54,7 +54,7 @@ public final class MigrationHelper {
 
             DaoConfig daoConfig = new DaoConfig(db, daoClasses[i]);
             String tableName = daoConfig.tablename;
-            if (!isTableExists(db, false, tableName)) {
+            if (!isTableExists(db, false, tableName)) {//不存在系统表中，表明是新增表，不需要创建临时表
                 printLog("【New Table】" + tableName);
                 continue;
             }

@@ -20,14 +20,16 @@ public class LTest {
     private String remark;
     private String remark2;
     private String remark3;
-    @Generated(hash = 943698960)
+    private String remark4;
+    @Generated(hash = 974057480)
     public LTest(Long id, String name, String remark, String remark2,
-            String remark3) {
+            String remark3, String remark4) {
         this.id = id;
         this.name = name;
         this.remark = remark;
         this.remark2 = remark2;
         this.remark3 = remark3;
+        this.remark4 = remark4;
     }
     @Generated(hash = 135633512)
     public LTest() {
@@ -61,5 +63,11 @@ public class LTest {
     }
     public void setRemark3(String remark3) {
         this.remark3 = remark3;
+    }
+    public String getRemark4() {
+        return this.remark4;
+    }
+    public void setRemark4(String remark4) {
+        this.remark4 = remark4;
     }
 }

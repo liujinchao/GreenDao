@@ -27,7 +27,6 @@ import java.util.TreeMap;
  */
 public class MySQLiteOpenHelper extends DaoMaster.OpenHelper  {
     private static final SortedMap<Integer, Migration> ALL_MIGRATIONS = new TreeMap<>();
-
     static {
         ALL_MIGRATIONS.put(1, new V1Migration());
         ALL_MIGRATIONS.put(2, new V2Migration());
@@ -49,12 +48,13 @@ public class MySQLiteOpenHelper extends DaoMaster.OpenHelper  {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by dropping all tables");
-//        MigrationHelper.migrate(db,
-//                UserDao.class,
+        MigrationHelper.migrate(db,
+                UserDao.class,
 //                ProfessionDao.class,
-//                LTestDao.class);
-        SortedMap<Integer, Migration> migrations = ALL_MIGRATIONS.subMap(oldVersion, newVersion);
-        executeMigrations(db, migrations.keySet());
+                LTestDao.class);
+
+//        SortedMap<Integer, Migration> migrations = ALL_MIGRATIONS.subMap(oldVersion, newVersion);
+//        executeMigrations(db, migrations.keySet());
 
     }
     private void executeMigrations(final SQLiteDatabase paramSQLiteDatabase, final Set<Integer>
