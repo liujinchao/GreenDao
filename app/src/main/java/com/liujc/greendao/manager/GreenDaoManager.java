@@ -1,4 +1,4 @@
-package com.liujc.greendao;
+package com.liujc.greendao.manager;
 
 import com.liujc.greendao.dao.DaoMaster;
 import com.liujc.greendao.dao.DaoSession;
@@ -7,7 +7,7 @@ import com.liujc.greendao.dao.DaoSession;
  * 类名称：GreenDaoManager
  * 创建者：Create by liujc
  * 创建时间：Create on 2016/12/1 14:57
- * 描述：TODO
+ * 描述：greendao 管理类   此管理类扩展性不太好  AbstractDatabaseManager扩展性比较好，解耦合
  * 最近修改时间：2016/12/1 14:57
  * 修改人：Modify by liujc
  */

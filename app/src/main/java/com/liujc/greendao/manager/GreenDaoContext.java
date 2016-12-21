@@ -1,4 +1,4 @@
-package com.liujc.greendao;
+package com.liujc.greendao.manager;
 
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -6,6 +6,9 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.liujc.greendao.CommonUtils;
+import com.liujc.greendao.MyApplication;
 
 import java.io.File;
 import java.io.IOException;

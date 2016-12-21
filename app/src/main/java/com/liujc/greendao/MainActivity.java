@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.liujc.greendao.Bean.User;
 import com.liujc.greendao.DataMigrate.MigrationHelper;
 import com.liujc.greendao.dao.UserDao;
+import com.liujc.greendao.manager.GreenDaoManager;
+import com.liujc.greendao.manager.UserDbManager;
 
 import org.greenrobot.greendao.query.Query;
 
@@ -83,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     private void getuserById() {
-        User user =getUserDao().load(1l);
+//        User user =getUserDao().load(1l);
+        User user = new UserDbManager().selectByPrimaryKey((long) 11);
         Log.i("tag", "结果：" + user.getId() + "," + user.getName() + "," + user.getAge() + "," + user.getIsBoy() + ";");
 
     }
@@ -91,7 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void insertdata(String name) {
         //插入数据
         User insertData = new User(null, name, 24, false,0);
-        getUserDao().insert(insertData);
+//        getUserDao().insert(insertData);
+        Log.d("TAG",new UserDbManager().insert(insertData)+"");
         querydata();
     }
 
@@ -99,11 +103,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //更改数据
         List<User> userss = getUserDao().loadAll();
         User user = new User(id, "更改后的数据用户", 22, true,0);
-        getUserDao().update(user);
+//        getUserDao().update(user);
+        new UserDbManager().update(user);
     }
 
     private void querydata() {
         //查询数据详细
+//        List<User> users = getUserDao().loadAll();
         List<User> users = getUserDao().loadAll();
         StringBuffer sb = new StringBuffer();
         Log.i("tag", "当前数量：" + users.size());
@@ -116,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void querydataBy(String name) {////查询条件
-        Query<User> nQuery = getUserDao().queryBuilder()
+        Query<User> nQuery = getUserDao().getQueryBuilder()
                 .where(UserDao.Properties.Name.eq(name))//.where(UserDao.Properties.Id.notEq(999))
                 .orderAsc(UserDao.Properties.Age)//.limit(5)//orderDesc
                 .build();
@@ -153,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @param user              用户信息
      * @return 插件或修改的用户id
      */
-    public long saveN(User user){
+    public boolean saveN(User user){
         return getUserDao().insertOrReplace(user);
     }
 
@@ -165,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(list == null || list.isEmpty()){
             return;
         }
-        getUserDao().getSession().runInTx(new Runnable() {
+        getUserDao().runInTx(new Runnable() {
             @Override
             public void run() {
                 for(int i=0; i<list.size(); i++){
@@ -191,7 +197,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void deleteNote(User user){
         getUserDao().delete(user);
     }
-    private UserDao getUserDao() {
-        return GreenDaoManager.getInstance().getSession().getUserDao();
+//    private UserDao getUserDao() {
+//        return GreenDaoManager.getInstance().getSession().getUserDao();
+//    }
+    private UserDbManager getUserDao() {
+        return new UserDbManager();
     }
 }

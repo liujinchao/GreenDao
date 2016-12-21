@@ -2,10 +2,9 @@ package com.liujc.greendao;
 
 import android.app.Application;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
-import com.liujc.greendao.dao.DaoMaster;
-import com.liujc.greendao.dao.DaoSession;
+import com.liujc.greendao.manager.AbstractDatabaseManager;
+import com.liujc.greendao.manager.GreenDaoManager;
 
 /**
  * 类名称：MyApplication
@@ -22,7 +21,8 @@ public class MyApplication extends Application{
         super.onCreate();
         context = getApplicationContext();
         //greenDao全局配置,只希望有一个数据库操作对象
-        GreenDaoManager.getInstance();
+//        GreenDaoManager.getInstance();
+        AbstractDatabaseManager.initOpenHelper(getApplicationContext());//初始化数据库
     }
 
     public static Context getContext(){

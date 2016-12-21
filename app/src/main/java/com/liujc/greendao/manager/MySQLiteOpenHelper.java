@@ -1,4 +1,4 @@
-package com.liujc.greendao;
+package com.liujc.greendao.manager;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
