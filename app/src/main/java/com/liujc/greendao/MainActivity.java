@@ -1,5 +1,6 @@
 package com.liujc.greendao;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -122,6 +123,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void querydataBy(String name) {////查询条件
+//        Cursor cursor = getUserDao().rawQuery("select * from USER where NAME = ?",new String[]{name});
+//        while (cursor.moveToNext()) {
+//            Log.d("tag","name:"+cursor.getString(cursor.getColumnIndex("NAME")));
+//        }
         Query<User> nQuery = getUserDao().getQueryBuilder()
                 .where(UserDao.Properties.Name.eq(name))//.where(UserDao.Properties.Id.notEq(999))
                 .orderAsc(UserDao.Properties.Age)//.limit(5)//orderDesc

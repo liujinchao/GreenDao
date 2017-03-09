@@ -1,6 +1,7 @@
 package com.liujc.greendao.manager;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -182,6 +183,13 @@ public abstract class AbstractDatabaseManager<M, K> implements IDatabase<M, K>{
         } catch (SQLiteException e) {
             return null;
         }
+    }
+
+    @Override
+    public Cursor rawQuery(String sql, String[] selectionArgs) {
+//        daoSession.getDatabase().execSQL(sql);
+//        daoSession.getDatabase().execSQL(sql,selectionArgs);
+        return daoSession.getDatabase().rawQuery(sql,selectionArgs);
     }
 
     @Override

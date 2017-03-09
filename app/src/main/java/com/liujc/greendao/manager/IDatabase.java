@@ -1,5 +1,6 @@
 package com.liujc.greendao.manager;
 
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -64,4 +65,6 @@ public interface IDatabase<M, K> {
      * @return
      */
     List<M> queryRaw(String where, String... selectionArg);
+    Cursor rawQuery (String sql, String[] selectionArgs);
+
 }
